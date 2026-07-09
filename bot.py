@@ -15,6 +15,7 @@ Lancement :
 """
 from __future__ import annotations
 
+import ctypes
 import random
 import sys
 import time
@@ -109,8 +110,27 @@ def une_verification(seen: dict) -> tuple[bool, int]:
     return True, notifiees
 
 
+_mutex_handle = None
+
+
+def ensure_single_instance() -> None:
+    """Verrou global Windows : garantit qu'un seul bot tourne a la fois.
+    Si une autre instance detient deja le verrou, ce doublon s'arrete net."""
+    global _mutex_handle
+    if not sys.platform.startswith("win"):
+        return
+    ERROR_ALREADY_EXISTS = 183
+    handle = ctypes.windll.kernel32.CreateMutexW(
+        None, False, "CrousSentinel_SingleInstance")
+    if ctypes.windll.kernel32.GetLastError() == ERROR_ALREADY_EXISTS:
+        log("Une autre instance de CROUS Sentinel tourne deja -> arret du doublon.")
+        sys.exit(0)
+    _mutex_handle = handle  # garde le verrou vivant tant que le process vit
+
+
 def main() -> None:
     setup_logging()
+    ensure_single_instance()
     log("========== DEMARRAGE DE CROUS SENTINEL ==========")
     send_message("🛰️ CROUS Sentinel démarré. Surveillance du Val-de-Marne "
                  "toutes les ~3 min. Je te préviens dès qu'un logement apparaît.")

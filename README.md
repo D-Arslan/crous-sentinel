@@ -157,8 +157,8 @@ dependency: `playwright`.
 
 ## 📚 Full documentation
 
-- 🇬🇧 [`CLAUDE.en.md`](CLAUDE.en.md) — complete English documentation
-- 🇫🇷 [`CLAUDE.md`](CLAUDE.md) — documentation complète (français)
+- 🇬🇧 [`documentation_en.md`](documentation_en.md) — complete English documentation
+- 🇫🇷 [`documentation.md`](documentation.md) — documentation complète (français)
 
 ---
 
