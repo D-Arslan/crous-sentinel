@@ -24,8 +24,6 @@
 
 <p align="center"><i>Real notifications: residence name, town, price and a direct link to the listing.</i></p>
 
-> _(Save a screenshot of the live mockup — `docs/telegram-preview.html` — as `docs/telegram-preview.png` to display it here.)_
-
 ---
 
 ## Why
