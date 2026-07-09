@@ -1,0 +1,297 @@
+<title>CROUS Sentinel — aperçu Telegram</title>
+<style>
+  :root {
+    --stage-1: #e8edf3;
+    --stage-2: #dbe3ec;
+    --bezel: #131b24;
+    --bezel-edge: #2b3542;
+    --header-bg: #ffffff;
+    --header-fg: #0f1620;
+    --header-sub: #8695a2;
+    --wall-1: #c9d6e8;
+    --wall-2: #dde5f0;
+    --bubble: #ffffff;
+    --bubble-shadow: rgba(16, 32, 52, .10);
+    --text: #101519;
+    --time: #9aa7b3;
+    --link: #2f81d8;
+    --tag: #e26a2c;
+    --datepill-bg: rgba(20, 34, 54, .28);
+    --datepill-fg: #ffffff;
+    --input-bg: #ffffff;
+    --input-fg: #8695a2;
+    --accent: #3390ec;
+    --caption: #56626e;
+    --hairline: rgba(16, 32, 52, .08);
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --stage-1: #0a0e13;
+      --stage-2: #10161d;
+      --bezel: #05080b;
+      --bezel-edge: #1a232e;
+      --header-bg: #17212b;
+      --header-fg: #ffffff;
+      --header-sub: #7c8b98;
+      --wall-1: #0d1520;
+      --wall-2: #141d29;
+      --bubble: #182533;
+      --bubble-shadow: rgba(0, 0, 0, .35);
+      --text: #e9eef2;
+      --time: #6d7f8f;
+      --link: #6ab3f3;
+      --tag: #f0955a;
+      --datepill-bg: rgba(255, 255, 255, .10);
+      --datepill-fg: #cdd8e1;
+      --input-bg: #17212b;
+      --input-fg: #6d7f8f;
+      --accent: #3390ec;
+      --caption: #8b98a5;
+      --hairline: rgba(255, 255, 255, .07);
+    }
+  }
+  :root[data-theme="light"] {
+    --stage-1: #e8edf3; --stage-2: #dbe3ec; --bezel: #131b24; --bezel-edge: #2b3542;
+    --header-bg: #ffffff; --header-fg: #0f1620; --header-sub: #8695a2;
+    --wall-1: #c9d6e8; --wall-2: #dde5f0; --bubble: #ffffff;
+    --bubble-shadow: rgba(16,32,52,.10); --text: #101519; --time: #9aa7b3;
+    --link: #2f81d8; --tag: #e26a2c; --datepill-bg: rgba(20,34,54,.28);
+    --datepill-fg: #ffffff; --input-bg: #ffffff; --input-fg: #8695a2;
+    --accent: #3390ec; --caption: #56626e; --hairline: rgba(16,32,52,.08);
+  }
+  :root[data-theme="dark"] {
+    --stage-1: #0a0e13; --stage-2: #10161d; --bezel: #05080b; --bezel-edge: #1a232e;
+    --header-bg: #17212b; --header-fg: #ffffff; --header-sub: #7c8b98;
+    --wall-1: #0d1520; --wall-2: #141d29; --bubble: #182533;
+    --bubble-shadow: rgba(0,0,0,.35); --text: #e9eef2; --time: #6d7f8f;
+    --link: #6ab3f3; --tag: #f0955a; --datepill-bg: rgba(255,255,255,.10);
+    --datepill-fg: #cdd8e1; --input-bg: #17212b; --input-fg: #6d7f8f;
+    --accent: #3390ec; --caption: #8b98a5; --hairline: rgba(255,255,255,.07);
+  }
+
+  * { box-sizing: border-box; }
+
+  .stage {
+    min-height: 100dvh;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 22px;
+    padding: 40px 16px 48px;
+    background:
+      radial-gradient(120% 80% at 50% 0%, var(--stage-2), var(--stage-1));
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+                 "Helvetica Neue", Arial, sans-serif;
+  }
+
+  /* ---------- Phone frame ---------- */
+  .phone {
+    width: 380px;
+    max-width: 100%;
+    border-radius: 46px;
+    background: var(--bezel);
+    padding: 12px;
+    box-shadow:
+      0 2px 0 var(--bezel-edge) inset,
+      0 40px 80px -30px rgba(6, 16, 30, .55),
+      0 12px 30px -18px rgba(6, 16, 30, .5);
+  }
+  .screen {
+    position: relative;
+    border-radius: 36px;
+    overflow: hidden;
+    background: var(--wall-2);
+    height: 720px;
+    display: flex;
+    flex-direction: column;
+  }
+  .notch {
+    position: absolute;
+    top: 8px; left: 50%;
+    transform: translateX(-50%);
+    width: 116px; height: 26px;
+    background: var(--bezel);
+    border-radius: 0 0 16px 16px;
+    z-index: 5;
+  }
+
+  /* ---------- Telegram header ---------- */
+  .tg-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 40px 14px 10px;
+    background: var(--header-bg);
+    border-bottom: 1px solid var(--hairline);
+    z-index: 3;
+  }
+  .chevron { width: 11px; height: 20px; flex: none; color: var(--accent); }
+  .avatar {
+    width: 40px; height: 40px; flex: none;
+    border-radius: 50%;
+    background: linear-gradient(150deg, #4aa3f0, #2b6fd0);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 20px;
+    box-shadow: 0 1px 2px rgba(0,0,0,.2);
+  }
+  .who { display: flex; flex-direction: column; line-height: 1.2; min-width: 0; }
+  .who .name {
+    font-size: 16px; font-weight: 600; color: var(--header-fg);
+    letter-spacing: .1px;
+  }
+  .who .sub { font-size: 12.5px; color: var(--header-sub); }
+  .header-spacer { flex: 1; }
+  .dots { width: 4px; height: 18px; color: var(--header-sub); opacity: .8; }
+
+  /* ---------- Chat area ---------- */
+  .tg-chat {
+    flex: 1;
+    overflow-y: auto;
+    padding: 14px 12px 8px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    background:
+      linear-gradient(160deg, var(--wall-1), var(--wall-2));
+  }
+  .datepill {
+    align-self: center;
+    margin: 4px 0 8px;
+    padding: 4px 11px;
+    border-radius: 14px;
+    font-size: 12px; font-weight: 600;
+    color: var(--datepill-fg);
+    background: var(--datepill-bg);
+    backdrop-filter: blur(2px);
+  }
+
+  .bubble {
+    position: relative;
+    align-self: flex-start;
+    max-width: 84%;
+    background: var(--bubble);
+    color: var(--text);
+    border-radius: 14px 14px 14px 5px;
+    padding: 7px 11px 7px;
+    box-shadow: 0 1px 1.5px var(--bubble-shadow);
+    font-size: 15px;
+    line-height: 1.38;
+  }
+  .bubble .body { white-space: pre-wrap; word-break: break-word; }
+  .bubble .title { font-weight: 600; }
+  .bubble .tag { color: var(--tag); font-weight: 600; }
+  .bubble a.link {
+    color: var(--link);
+    text-decoration: none;
+    word-break: break-all;
+  }
+  .bubble a.link:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+  .bubble .time {
+    display: inline-block;
+    float: right;
+    margin: 6px 0 -2px 10px;
+    font-size: 11.5px;
+    color: var(--time);
+    font-variant-numeric: tabular-nums;
+  }
+
+  /* ---------- Fake input ---------- */
+  .tg-input {
+    display: flex; align-items: center; gap: 10px;
+    padding: 10px 14px calc(10px + env(safe-area-inset-bottom));
+    background: var(--input-bg);
+    border-top: 1px solid var(--hairline);
+    color: var(--input-fg);
+    font-size: 15px;
+  }
+  .tg-input .clip { font-size: 19px; opacity: .7; }
+  .tg-input .field { flex: 1; }
+  .tg-input .send {
+    width: 34px; height: 34px; border-radius: 50%;
+    background: var(--accent);
+    display: flex; align-items: center; justify-content: center;
+    color: #fff; flex: none;
+  }
+
+  .caption {
+    text-align: center;
+    color: var(--caption);
+    font-size: 13.5px;
+    line-height: 1.5;
+    max-width: 380px;
+  }
+  .caption strong { color: var(--header-fg); font-weight: 600; }
+</style>
+
+<div class="stage">
+  <div class="phone">
+    <div class="screen">
+      <div class="notch"></div>
+
+      <div class="tg-header">
+        <svg class="chevron" viewBox="0 0 11 20" fill="none" aria-hidden="true">
+          <path d="M10 1 1 10l9 9" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <div class="avatar">🛰️</div>
+        <div class="who">
+          <span class="name">CROUS Sentinel</span>
+          <span class="sub">bot</span>
+        </div>
+        <div class="header-spacer"></div>
+        <svg class="dots" viewBox="0 0 4 18" fill="currentColor" aria-hidden="true">
+          <circle cx="2" cy="2" r="2"/><circle cx="2" cy="9" r="2"/><circle cx="2" cy="16" r="2"/>
+        </svg>
+      </div>
+
+      <div class="tg-chat">
+        <div class="datepill">Aujourd'hui</div>
+
+        <div class="bubble">
+          <div class="body">🛰️ CROUS Sentinel démarré. Surveillance du Val-de-Marne toutes les ~3 min. Je te préviens dès qu'un logement apparaît.<span class="time">09:12</span></div>
+        </div>
+
+        <div class="bubble">
+          <div class="body"><span class="title">🏠 NOUVEAU logement CROUS — Créteil</span>
+
+🏢 Résidence Robert Lion
+📍 9 rue Gustave Eiffel 94000 Créteil
+🛏️ Studio · 18 m²
+💶 348,50 €/mois
+<span class="tag">⚠️ stock faible</span>
+
+🔗 <a class="link" href="https://trouverunlogement.lescrous.fr/tools/47/accommodations/4821">https://trouverunlogement.lescrous.fr/tools/47/accommodations/4821</a><span class="time">09:15</span></div>
+        </div>
+
+        <div class="bubble">
+          <div class="body"><span class="title">🏠 NOUVEAU logement CROUS — Villejuif</span>
+
+🏢 Résidence Universitaire Camille Claudel
+📍 12 avenue de Paris 94800 Villejuif
+🛏️ T1 · 22 m²
+💶 412,00 €/mois
+<span class="tag">🔥 très demandé</span>
+
+🔗 <a class="link" href="https://trouverunlogement.lescrous.fr/tools/47/accommodations/3312">https://trouverunlogement.lescrous.fr/tools/47/accommodations/3312</a><span class="time">09:41</span></div>
+        </div>
+      </div>
+
+      <div class="tg-input">
+        <span class="clip">📎</span>
+        <span class="field">Message</span>
+        <span class="send" aria-hidden="true">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+            <path d="M3 12l18-8-8 18-2-8-8-2z" fill="currentColor"/>
+          </svg>
+        </span>
+      </div>
+    </div>
+  </div>
+
+  <p class="caption">
+    <strong>CROUS Sentinel</strong> — exemples réels de notifications envoyées sur
+    Telegram (nom de la résidence, commune, prix et lien direct vers l'annonce).
+  </p>
+</div>

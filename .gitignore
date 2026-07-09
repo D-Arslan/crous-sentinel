@@ -1,0 +1,8 @@
+.env
+.venv/
+__pycache__/
+*.pyc
+seen.json
+seen.db
+bot.log
+bot.log.old
