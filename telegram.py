@@ -36,7 +36,8 @@ CHAT_ID = _ENV.get("TELEGRAM_CHAT_ID", "")
 def send_message(text: str, retries: int = 3, disable_preview: bool = True) -> bool:
     """
     Envoie un message Telegram. Renvoie True si succes, False sinon.
-    Reessaie 'retries' fois en cas d'erreur reseau. Ne plante jamais.
+    Reessaie 'retries' fois en cas d'erreur reseau (attente 2, 4, 8 s entre
+    deux essais, aucune attente apres le dernier). Ne plante jamais.
     """
     if not TOKEN or not CHAT_ID:
         print("[telegram] TOKEN ou CHAT_ID manquant dans .env")
@@ -59,7 +60,8 @@ def send_message(text: str, retries: int = 3, disable_preview: bool = True) -> b
             print(f"[telegram] Reponse KO: {payload}")
         except Exception as e:
             print(f"[telegram] Envoi echoue (essai {attempt}/{retries}): {e}")
-        time.sleep(3 * attempt)  # backoff simple
+        if attempt < retries:
+            time.sleep(2 ** attempt)  # 2 s, 4 s, ... ; rien apres le dernier essai
     return False
 
 

@@ -92,8 +92,8 @@ so the whole chain is testable with the site unreachable.
 | site access | headless Chromium, `fetch()` evaluated in the page, JSON search API, bounding box + postal-code filter |
 | memory | `seen.json`, written through a temporary file and `os.replace` |
 | notifications | Telegram Bot API over `urllib` (standard library), 3 attempts |
-| operations | Windows Task Scheduler (logon + every 10 min), Windows mutex, log file with rotation |
-| quality | `unittest` (44 offline tests, replay on captured data), GitHub Actions on Ubuntu and Windows |
+| operations | Windows Task Scheduler (logon + every 10 min), Windows mutex, log rotated per cycle |
+| quality | `unittest` (49 offline tests, replay on captured data), GitHub Actions on Ubuntu and Windows |
 
 ## Getting started in 3 commands
 
@@ -129,7 +129,7 @@ crous-sentinel/
 ├── crous.py                 # queue, browser-side fetch, context, paginated search, parse, filter, replay
 ├── store.py                 # seen.json: tolerant load, atomic save
 ├── telegram.py              # send_message (returns True only on confirmed delivery), formatting
-├── tests/                   # 44 unittest cases, no network: chain replay, store, one mocked cycle
+├── tests/                   # 49 unittest cases, no network: chain replay, store, mocked cycle, log rotation
 ├── fixtures/                # synthetic (root, pagination/) and real/ (campaign 47, HAR of 2026-09-18)
 ├── scripts/                 # diagnostic --rejeu, fixture capture / HAR extraction, check_*, telegram_smoke
 ├── install_task.ps1 / uninstall_task.ps1   # Windows scheduled task
@@ -170,9 +170,8 @@ Details, and the reasoning behind each: [docs/DESIGN.md](docs/DESIGN.md).
   elsewhere (CI on Ubuntu). Runs only while the user session is open.
 - **Pagination guard, not proof**: at most 20 pages of 100 per campaign; beyond that the log
   says so and the results are truncated. Never reached (the box never held more than 0).
-- **Log rotation happens at startup only**, so a long run can exceed the 5 MB target
-  (the incident's log reached 6 MB). Next step: rotate per cycle.
-- **Retry sleeps after the last Telegram attempt** and the delay is linear (3, 6, 9 s).
+- **Telegram is the single channel.** No fallback if the bot token or the chat is gone;
+  the startup and health messages are the only proof of life.
 
 ## Author
 

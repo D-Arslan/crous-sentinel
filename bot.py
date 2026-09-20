@@ -26,6 +26,7 @@ Lancement :
 from __future__ import annotations
 
 import ctypes
+import os
 import random
 import sys
 import time
@@ -53,6 +54,9 @@ ALERT_REPEAT_S = 21_600      # ... puis rappel toutes les 6 h tant que ca dure
 
 LOG_PATH = Path(__file__).with_name("bot.log")
 LOG_MAX_BYTES = 5_000_000   # au-dela, on archive bot.log -> bot.log.old
+# La rotation est verifiee au demarrage ET a la fin de chaque cycle : un
+# processus qui vit des semaines ne repasse jamais par le demarrage (le log
+# de l'incident a atteint 6 Mo pour 5 annonces).
 
 
 class _Tee:
@@ -82,19 +86,53 @@ class _Tee:
                 pass
 
 
-def setup_logging() -> None:
-    """Redirige stdout/stderr vers la console + bot.log (avec rotation simple)."""
+def _open_log(path: Path):
+    return open(path, "a", encoding="utf-8", buffering=1)  # ligne par ligne
+
+
+def _rotate_file(path: Path, fileobj, max_bytes: int):
+    """Si 'path' depasse 'max_bytes' : ferme 'fileobj', renomme path -> path.old
+    (en ecrasant un .old existant) et renvoie un NOUVEAU fichier ouvert sur
+    'path'. Sinon renvoie 'fileobj' inchange. Ne leve jamais : en cas de
+    probleme on garde le fichier courant, perdre du log serait pire."""
     try:
-        if LOG_PATH.exists() and LOG_PATH.stat().st_size > LOG_MAX_BYTES:
-            old = LOG_PATH.with_suffix(".log.old")
-            if old.exists():
-                old.unlink()
-            LOG_PATH.rename(old)
+        if not (path.exists() and path.stat().st_size > max_bytes):
+            return fileobj
+        if fileobj is not None:
+            fileobj.close()
+        os.replace(path, path.with_suffix(path.suffix + ".old"))
+        return _open_log(path)
     except Exception:
-        pass
-    logfile = open(LOG_PATH, "a", encoding="utf-8", buffering=1)  # ligne par ligne
-    sys.stdout = _Tee(sys.__stdout__, logfile)
-    sys.stderr = _Tee(sys.__stderr__, logfile)
+        try:
+            if fileobj is not None and not fileobj.closed:
+                return fileobj
+            return _open_log(path)
+        except Exception:
+            return fileobj
+
+
+_logfile = None
+
+
+def rotate_log_if_needed() -> None:
+    """Rotation de bot.log (appelee au demarrage et en fin de cycle)."""
+    global _logfile
+    new = _rotate_file(LOG_PATH, _logfile, LOG_MAX_BYTES)
+    if new is not _logfile:
+        _logfile = new
+        for stream in (sys.stdout, sys.stderr):
+            if isinstance(stream, _Tee):
+                stream.fileobj = new
+
+
+def setup_logging() -> None:
+    """Redirige stdout/stderr vers la console + bot.log (avec rotation)."""
+    global _logfile
+    _logfile = _rotate_file(LOG_PATH, None, LOG_MAX_BYTES)
+    if _logfile is None:
+        _logfile = _open_log(LOG_PATH)
+    sys.stdout = _Tee(sys.__stdout__, _logfile)
+    sys.stderr = _Tee(sys.__stderr__, _logfile)
 
 
 def une_verification(seen: dict) -> tuple[str, int]:
@@ -248,6 +286,7 @@ def main() -> None:
             traceback.print_exc()
 
         log(f"Prochaine verification dans {pause} s.\n")
+        rotate_log_if_needed()
         time.sleep(pause)
 
 

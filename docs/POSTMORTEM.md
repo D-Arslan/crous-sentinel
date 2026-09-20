@@ -113,7 +113,7 @@ The diagnosis itself produced three successive wrong conclusions, each corrected
 | Deduplication | last overwrites first | first occurrence + merged flags |
 | Logging | crash on non-cp1252 character | clean degradation |
 | API calls | Node client, outside the browser | `fetch()` from the page |
-| Tests | isolated logic, hand-injected data | **44 tests, full chain in replay** |
+| Tests | isolated logic, hand-injected data | **49 tests, full chain in replay** |
 
 ---
 
@@ -158,6 +158,6 @@ The author's browser was getting the data at the exact moment Playwright receive
 
 The bot remains **stopped**, scheduled task disabled. Not out of technical caution any more, but because the site refuses automated access and the decision was made not to circumvent it.
 
-The 44 tests cover parsing, filtering, pagination, deduplication, memory and message formatting, and the replay confirms all of it on real data. The project can be demonstrated end to end without any access to the site.
+The 49 tests cover parsing, filtering, pagination, deduplication, memory and message formatting, and the replay confirms all of it on real data. The project can be demonstrated end to end without any access to the site.
 
 **The most uncomfortable part**: for 17 days this tool gave the illusion of watching over a vital need, finding a home. A silent system and a healthy system are indistinguishable until you design a way to tell them apart. That is the real lesson of this incident.

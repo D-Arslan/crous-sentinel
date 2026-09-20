@@ -88,7 +88,9 @@ coexist. Over 66 days the mutex stopped 970 duplicate launches (`bot.log`).
 error. `log` now retries with replacement characters and, failing that, gives up silently.
 Console output is ASCII-safe; emoji are reserved for Telegram messages, which travel as
 UTF-8 over HTTP. The log file is UTF-8 and is archived to `bot.log.old` when it exceeds
-5 MB at startup.
+5 MB, checked at startup and at the end of every cycle (close, rename, reopen, the
+previous `.old` overwritten): the incident's process lived 66 days without a restart and
+its log reached 6 MB.
 
 **Zero dependencies beyond Playwright.** Telegram goes through `urllib`, the memory is
 JSON, the tests are `unittest`. It keeps the install to one line and the failure surface
@@ -138,7 +140,7 @@ read as a signature check rather than an address ban.
 | `ALERT_REPEAT_S` | 21 600 | reminder period while the failure lasts |
 | `BACKOFF_START_S` / `BACKOFF_MAX_S` | 1 800 / 21 600 | backoff after a 429, doubling to the cap |
 | `STOP_AFTER_RATE_LIMITED_S` | 86 400 | continuous limiting after which the bot exits |
-| `LOG_MAX_BYTES` | 5 000 000 | size that triggers archiving at startup |
+| `LOG_MAX_BYTES` | 5 000 000 | size that triggers archiving, checked at startup and after each cycle |
 | `PAGE_SIZE` / `MAX_PAGES` | 100 / 20 | server page cap, per-campaign page ceiling |
 | `BOX_94`, `COMMUNES_94` | see `crous.py` | search box, fallback town labels |
 
@@ -159,6 +161,10 @@ Get-ScheduledTask -TaskName CrousSentinel
 Disable-ScheduledTask -TaskName CrousSentinel   # pause; Enable-ScheduledTask to resume
 ```
 
+**Telegram retries**: three attempts, 2 s then 4 s between them, no sleep after the last
+(`tests/test_ops.py` counts the sleeps). Until 2026-09-20 the delay was linear and the
+function slept once more after its final failure.
+
 **Manual tools** (`scripts/`): `telegram_smoke.py` sends one real message to check the
 token and chat id; `check_crous.py` prints the current listings without notifying;
 `check_new.py` prints only unseen listings and updates the memory (do not run it while the
@@ -175,10 +181,6 @@ minute of automated activity on 2026-09-16.
 
 ## 4. Known debt
 
-- **Log rotation only at startup.** A long-lived process never rotates; the incident's log
-  reached 6 MB against a 5 MB target. Rotate at the end of each cycle.
-- **Telegram retry sleeps after the last attempt** and the delay is linear (3, 6, 9 s), not
-  exponential as an earlier README said.
 - **`check_new.py` writes `seen.json`** with no lock against the running bot.
 - **The startup message is unconditional**; a bot restarted every few minutes would spam.
   Not observed thanks to the mutex, but not prevented either.
