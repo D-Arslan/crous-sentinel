@@ -1,0 +1,19 @@
+{
+  "tools": {
+    "currentSchoolYear": {
+      "id": 42,
+      "mechanism": "flow",
+      "isEnabled": true
+    },
+    "nextSchoolYear": {
+      "id": 47,
+      "mechanism": "residual",
+      "isEnabled": true
+    },
+    "previousSchoolYear": {
+      "id": 38,
+      "mechanism": "flow",
+      "isEnabled": false
+    }
+  }
+}

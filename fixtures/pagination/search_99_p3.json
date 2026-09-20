@@ -1,0 +1,1056 @@
+{
+  "results": {
+    "items": [
+      {
+        "id": 9200,
+        "label": "T1",
+        "residence": {
+          "label": "Residence 200",
+          "address": "200 rue de Test, 94400 Vitry-sur-Seine"
+        },
+        "occupationModes": [
+          {
+            "rent": {
+              "min": 30000
+            }
+          }
+        ],
+        "area": {
+          "min": 18
+        },
+        "available": true,
+        "lowStock": false,
+        "highDemand": false
+      },
+      {
+        "id": 9201,
+        "label": "T1",
+        "residence": {
+          "label": "Residence 201",
+          "address": "201 rue de Test, 94400 Vitry-sur-Seine"
+        },
+        "occupationModes": [
+          {
+            "rent": {
+              "min": 30000
+            }
+          }
+        ],
+        "area": {
+          "min": 18
+        },
+        "available": true,
+        "lowStock": false,
+        "highDemand": false
+      },
+      {
+        "id": 9202,
+        "label": "T1",
+        "residence": {
+          "label": "Residence 202",
+          "address": "202 rue de Test, 94400 Vitry-sur-Seine"
+        },
+        "occupationModes": [
+          {
+            "rent": {
+              "min": 30000
+            }
+          }
+        ],
+        "area": {
+          "min": 18
+        },
+        "available": true,
+        "lowStock": false,
+        "highDemand": false
+      },
+      {
+        "id": 9203,
+        "label": "T1",
+        "residence": {
+          "label": "Residence 203",
+          "address": "203 rue de Test, 94400 Vitry-sur-Seine"
+        },
+        "occupationModes": [
+          {
+            "rent": {
+              "min": 30000
+            }
+          }
+        ],
+        "area": {
+          "min": 18
+        },
+        "available": true,
+        "lowStock": false,
+        "highDemand": false
+      },
+      {
+        "id": 9204,
+        "label": "T1",
+        "residence": {
+          "label": "Residence 204",
+          "address": "204 rue de Test, 94400 Vitry-sur-Seine"
+        },
+        "occupationModes": [
+          {
+            "rent": {
+              "min": 30000
+            }
+          }
+        ],
+        "area": {
+          "min": 18
+        },
+        "available": true,
+        "lowStock": false,
+        "highDemand": false
+      },
+      {
+        "id": 9205,
+        "label": "T1",
+        "residence": {
+          "label": "Residence 205",
+          "address": "205 rue de Test, 94400 Vitry-sur-Seine"
+        },
+        "occupationModes": [
+          {
+            "rent": {
+              "min": 30000
+            }
+          }
+        ],
+        "area": {
+          "min": 18
+        },
+        "available": true,
+        "lowStock": false,
+        "highDemand": false
+      },
+      {
+        "id": 9206,
+        "label": "T1",
+        "residence": {
+          "label": "Residence 206",
+          "address": "206 rue de Test, 94400 Vitry-sur-Seine"
+        },
+        "occupationModes": [
+          {
+            "rent": {
+              "min": 30000
+            }
+          }
+        ],
+        "area": {
+          "min": 18
+        },
+        "available": true,
+        "lowStock": false,
+        "highDemand": false
+      },
+      {
+        "id": 9207,
+        "label": "T1",
+        "residence": {
+          "label": "Residence 207",
+          "address": "207 rue de Test, 94400 Vitry-sur-Seine"
+        },
+        "occupationModes": [
+          {
+            "rent": {
+              "min": 30000
+            }
+          }
+        ],
+        "area": {
+          "min": 18
+        },
+        "available": true,
+        "lowStock": false,
+        "highDemand": false
+      },
+      {
+        "id": 9208,
+        "label": "T1",
+        "residence": {
+          "label": "Residence 208",
+          "address": "208 rue de Test, 94400 Vitry-sur-Seine"
+        },
+        "occupationModes": [
+          {
+            "rent": {
+              "min": 30000
+            }
+          }
+        ],
+        "area": {
+          "min": 18
+        },
+        "available": true,
+        "lowStock": false,
+        "highDemand": false
+      },
+      {
+        "id": 9209,
+        "label": "T1",
+        "residence": {
+          "label": "Residence 209",
+          "address": "209 rue de Test, 94400 Vitry-sur-Seine"
+        },
+        "occupationModes": [
+          {
+            "rent": {
+              "min": 30000
+            }
+          }
+        ],
+        "area": {
+          "min": 18
+        },
+        "available": true,
+        "lowStock": false,
+        "highDemand": false
+      },
+      {
+        "id": 9210,
+        "label": "T1",
+        "residence": {
+          "label": "Residence 210",
+          "address": "210 rue de Test, 94400 Vitry-sur-Seine"
+        },
+        "occupationModes": [
+          {
+            "rent": {
+              "min": 30000
+            }
+          }
+        ],
+        "area": {
+          "min": 18
+        },
+        "available": true,
+        "lowStock": false,
+        "highDemand": false
+      },
+      {
+        "id": 9211,
+        "label": "T1",
+        "residence": {
+          "label": "Residence 211",
+          "address": "211 rue de Test, 94400 Vitry-sur-Seine"
+        },
+        "occupationModes": [
+          {
+            "rent": {
+              "min": 30000
+            }
+          }
+        ],
+        "area": {
+          "min": 18
+        },
+        "available": true,
+        "lowStock": false,
+        "highDemand": false
+      },
+      {
+        "id": 9212,
+        "label": "T1",
+        "residence": {
+          "label": "Residence 212",
+          "address": "212 rue de Test, 94400 Vitry-sur-Seine"
+        },
+        "occupationModes": [
+          {
+            "rent": {
+              "min": 30000
+            }
+          }
+        ],
+        "area": {
+          "min": 18
+        },
+        "available": true,
+        "lowStock": false,
+        "highDemand": false
+      },
+      {
+        "id": 9213,
+        "label": "T1",
+        "residence": {
+          "label": "Residence 213",
+          "address": "213 rue de Test, 94400 Vitry-sur-Seine"
+        },
+        "occupationModes": [
+          {
+            "rent": {
+              "min": 30000
+            }
+          }
+        ],
+        "area": {
+          "min": 18
+        },
+        "available": true,
+        "lowStock": false,
+        "highDemand": false
+      },
+      {
+        "id": 9214,
+        "label": "T1",
+        "residence": {
+          "label": "Residence 214",
+          "address": "214 rue de Test, 94400 Vitry-sur-Seine"
+        },
+        "occupationModes": [
+          {
+            "rent": {
+              "min": 30000
+            }
+          }
+        ],
+        "area": {
+          "min": 18
+        },
+        "available": true,
+        "lowStock": false,
+        "highDemand": false
+      },
+      {
+        "id": 9215,
+        "label": "T1",
+        "residence": {
+          "label": "Residence 215",
+          "address": "215 rue de Test, 94400 Vitry-sur-Seine"
+        },
+        "occupationModes": [
+          {
+            "rent": {
+              "min": 30000
+            }
+          }
+        ],
+        "area": {
+          "min": 18
+        },
+        "available": true,
+        "lowStock": false,
+        "highDemand": false
+      },
+      {
+        "id": 9216,
+        "label": "T1",
+        "residence": {
+          "label": "Residence 216",
+          "address": "216 rue de Test, 94400 Vitry-sur-Seine"
+        },
+        "occupationModes": [
+          {
+            "rent": {
+              "min": 30000
+            }
+          }
+        ],
+        "area": {
+          "min": 18
+        },
+        "available": true,
+        "lowStock": false,
+        "highDemand": false
+      },
+      {
+        "id": 9217,
+        "label": "T1",
+        "residence": {
+          "label": "Residence 217",
+          "address": "217 rue de Test, 94400 Vitry-sur-Seine"
+        },
+        "occupationModes": [
+          {
+            "rent": {
+              "min": 30000
+            }
+          }
+        ],
+        "area": {
+          "min": 18
+        },
+        "available": true,
+        "lowStock": false,
+        "highDemand": false
+      },
+      {
+        "id": 9218,
+        "label": "T1",
+        "residence": {
+          "label": "Residence 218",
+          "address": "218 rue de Test, 94400 Vitry-sur-Seine"
+        },
+        "occupationModes": [
+          {
+            "rent": {
+              "min": 30000
+            }
+          }
+        ],
+        "area": {
+          "min": 18
+        },
+        "available": true,
+        "lowStock": false,
+        "highDemand": false
+      },
+      {
+        "id": 9219,
+        "label": "T1",
+        "residence": {
+          "label": "Residence 219",
+          "address": "219 rue de Test, 94400 Vitry-sur-Seine"
+        },
+        "occupationModes": [
+          {
+            "rent": {
+              "min": 30000
+            }
+          }
+        ],
+        "area": {
+          "min": 18
+        },
+        "available": true,
+        "lowStock": false,
+        "highDemand": false
+      },
+      {
+        "id": 9220,
+        "label": "T1",
+        "residence": {
+          "label": "Residence 220",
+          "address": "220 rue de Test, 94400 Vitry-sur-Seine"
+        },
+        "occupationModes": [
+          {
+            "rent": {
+              "min": 30000
+            }
+          }
+        ],
+        "area": {
+          "min": 18
+        },
+        "available": true,
+        "lowStock": false,
+        "highDemand": false
+      },
+      {
+        "id": 9221,
+        "label": "T1",
+        "residence": {
+          "label": "Residence 221",
+          "address": "221 rue de Test, 94400 Vitry-sur-Seine"
+        },
+        "occupationModes": [
+          {
+            "rent": {
+              "min": 30000
+            }
+          }
+        ],
+        "area": {
+          "min": 18
+        },
+        "available": true,
+        "lowStock": false,
+        "highDemand": false
+      },
+      {
+        "id": 9222,
+        "label": "T1",
+        "residence": {
+          "label": "Residence 222",
+          "address": "222 rue de Test, 94400 Vitry-sur-Seine"
+        },
+        "occupationModes": [
+          {
+            "rent": {
+              "min": 30000
+            }
+          }
+        ],
+        "area": {
+          "min": 18
+        },
+        "available": true,
+        "lowStock": false,
+        "highDemand": false
+      },
+      {
+        "id": 9223,
+        "label": "T1",
+        "residence": {
+          "label": "Residence 223",
+          "address": "223 rue de Test, 94400 Vitry-sur-Seine"
+        },
+        "occupationModes": [
+          {
+            "rent": {
+              "min": 30000
+            }
+          }
+        ],
+        "area": {
+          "min": 18
+        },
+        "available": true,
+        "lowStock": false,
+        "highDemand": false
+      },
+      {
+        "id": 9224,
+        "label": "T1",
+        "residence": {
+          "label": "Residence 224",
+          "address": "224 rue de Test, 94400 Vitry-sur-Seine"
+        },
+        "occupationModes": [
+          {
+            "rent": {
+              "min": 30000
+            }
+          }
+        ],
+        "area": {
+          "min": 18
+        },
+        "available": true,
+        "lowStock": false,
+        "highDemand": false
+      },
+      {
+        "id": 9225,
+        "label": "T1",
+        "residence": {
+          "label": "Residence 225",
+          "address": "225 rue de Test, 94400 Vitry-sur-Seine"
+        },
+        "occupationModes": [
+          {
+            "rent": {
+              "min": 30000
+            }
+          }
+        ],
+        "area": {
+          "min": 18
+        },
+        "available": true,
+        "lowStock": false,
+        "highDemand": false
+      },
+      {
+        "id": 9226,
+        "label": "T1",
+        "residence": {
+          "label": "Residence 226",
+          "address": "226 rue de Test, 94400 Vitry-sur-Seine"
+        },
+        "occupationModes": [
+          {
+            "rent": {
+              "min": 30000
+            }
+          }
+        ],
+        "area": {
+          "min": 18
+        },
+        "available": true,
+        "lowStock": false,
+        "highDemand": false
+      },
+      {
+        "id": 9227,
+        "label": "T1",
+        "residence": {
+          "label": "Residence 227",
+          "address": "227 rue de Test, 94400 Vitry-sur-Seine"
+        },
+        "occupationModes": [
+          {
+            "rent": {
+              "min": 30000
+            }
+          }
+        ],
+        "area": {
+          "min": 18
+        },
+        "available": true,
+        "lowStock": false,
+        "highDemand": false
+      },
+      {
+        "id": 9228,
+        "label": "T1",
+        "residence": {
+          "label": "Residence 228",
+          "address": "228 rue de Test, 94400 Vitry-sur-Seine"
+        },
+        "occupationModes": [
+          {
+            "rent": {
+              "min": 30000
+            }
+          }
+        ],
+        "area": {
+          "min": 18
+        },
+        "available": true,
+        "lowStock": false,
+        "highDemand": false
+      },
+      {
+        "id": 9229,
+        "label": "T1",
+        "residence": {
+          "label": "Residence 229",
+          "address": "229 rue de Test, 94400 Vitry-sur-Seine"
+        },
+        "occupationModes": [
+          {
+            "rent": {
+              "min": 30000
+            }
+          }
+        ],
+        "area": {
+          "min": 18
+        },
+        "available": true,
+        "lowStock": false,
+        "highDemand": false
+      },
+      {
+        "id": 9230,
+        "label": "T1",
+        "residence": {
+          "label": "Residence 230",
+          "address": "230 rue de Test, 94400 Vitry-sur-Seine"
+        },
+        "occupationModes": [
+          {
+            "rent": {
+              "min": 30000
+            }
+          }
+        ],
+        "area": {
+          "min": 18
+        },
+        "available": true,
+        "lowStock": false,
+        "highDemand": false
+      },
+      {
+        "id": 9231,
+        "label": "T1",
+        "residence": {
+          "label": "Residence 231",
+          "address": "231 rue de Test, 94400 Vitry-sur-Seine"
+        },
+        "occupationModes": [
+          {
+            "rent": {
+              "min": 30000
+            }
+          }
+        ],
+        "area": {
+          "min": 18
+        },
+        "available": true,
+        "lowStock": false,
+        "highDemand": false
+      },
+      {
+        "id": 9232,
+        "label": "T1",
+        "residence": {
+          "label": "Residence 232",
+          "address": "232 rue de Test, 94400 Vitry-sur-Seine"
+        },
+        "occupationModes": [
+          {
+            "rent": {
+              "min": 30000
+            }
+          }
+        ],
+        "area": {
+          "min": 18
+        },
+        "available": true,
+        "lowStock": false,
+        "highDemand": false
+      },
+      {
+        "id": 9233,
+        "label": "T1",
+        "residence": {
+          "label": "Residence 233",
+          "address": "233 rue de Test, 94400 Vitry-sur-Seine"
+        },
+        "occupationModes": [
+          {
+            "rent": {
+              "min": 30000
+            }
+          }
+        ],
+        "area": {
+          "min": 18
+        },
+        "available": true,
+        "lowStock": false,
+        "highDemand": false
+      },
+      {
+        "id": 9234,
+        "label": "T1",
+        "residence": {
+          "label": "Residence 234",
+          "address": "234 rue de Test, 94400 Vitry-sur-Seine"
+        },
+        "occupationModes": [
+          {
+            "rent": {
+              "min": 30000
+            }
+          }
+        ],
+        "area": {
+          "min": 18
+        },
+        "available": true,
+        "lowStock": false,
+        "highDemand": false
+      },
+      {
+        "id": 9235,
+        "label": "T1",
+        "residence": {
+          "label": "Residence 235",
+          "address": "235 rue de Test, 94400 Vitry-sur-Seine"
+        },
+        "occupationModes": [
+          {
+            "rent": {
+              "min": 30000
+            }
+          }
+        ],
+        "area": {
+          "min": 18
+        },
+        "available": true,
+        "lowStock": false,
+        "highDemand": false
+      },
+      {
+        "id": 9236,
+        "label": "T1",
+        "residence": {
+          "label": "Residence 236",
+          "address": "236 rue de Test, 94400 Vitry-sur-Seine"
+        },
+        "occupationModes": [
+          {
+            "rent": {
+              "min": 30000
+            }
+          }
+        ],
+        "area": {
+          "min": 18
+        },
+        "available": true,
+        "lowStock": false,
+        "highDemand": false
+      },
+      {
+        "id": 9237,
+        "label": "T1",
+        "residence": {
+          "label": "Residence 237",
+          "address": "237 rue de Test, 94400 Vitry-sur-Seine"
+        },
+        "occupationModes": [
+          {
+            "rent": {
+              "min": 30000
+            }
+          }
+        ],
+        "area": {
+          "min": 18
+        },
+        "available": true,
+        "lowStock": false,
+        "highDemand": false
+      },
+      {
+        "id": 9238,
+        "label": "T1",
+        "residence": {
+          "label": "Residence 238",
+          "address": "238 rue de Test, 94400 Vitry-sur-Seine"
+        },
+        "occupationModes": [
+          {
+            "rent": {
+              "min": 30000
+            }
+          }
+        ],
+        "area": {
+          "min": 18
+        },
+        "available": true,
+        "lowStock": false,
+        "highDemand": false
+      },
+      {
+        "id": 9239,
+        "label": "T1",
+        "residence": {
+          "label": "Residence 239",
+          "address": "239 rue de Test, 94400 Vitry-sur-Seine"
+        },
+        "occupationModes": [
+          {
+            "rent": {
+              "min": 30000
+            }
+          }
+        ],
+        "area": {
+          "min": 18
+        },
+        "available": true,
+        "lowStock": false,
+        "highDemand": false
+      },
+      {
+        "id": 9240,
+        "label": "T1",
+        "residence": {
+          "label": "Residence 240",
+          "address": "240 rue de Test, 94400 Vitry-sur-Seine"
+        },
+        "occupationModes": [
+          {
+            "rent": {
+              "min": 30000
+            }
+          }
+        ],
+        "area": {
+          "min": 18
+        },
+        "available": true,
+        "lowStock": false,
+        "highDemand": false
+      },
+      {
+        "id": 9241,
+        "label": "T1",
+        "residence": {
+          "label": "Residence 241",
+          "address": "241 rue de Test, 94400 Vitry-sur-Seine"
+        },
+        "occupationModes": [
+          {
+            "rent": {
+              "min": 30000
+            }
+          }
+        ],
+        "area": {
+          "min": 18
+        },
+        "available": true,
+        "lowStock": false,
+        "highDemand": false
+      },
+      {
+        "id": 9242,
+        "label": "T1",
+        "residence": {
+          "label": "Residence 242",
+          "address": "242 rue de Test, 94400 Vitry-sur-Seine"
+        },
+        "occupationModes": [
+          {
+            "rent": {
+              "min": 30000
+            }
+          }
+        ],
+        "area": {
+          "min": 18
+        },
+        "available": true,
+        "lowStock": false,
+        "highDemand": false
+      },
+      {
+        "id": 9243,
+        "label": "T1",
+        "residence": {
+          "label": "Residence 243",
+          "address": "243 rue de Test, 94400 Vitry-sur-Seine"
+        },
+        "occupationModes": [
+          {
+            "rent": {
+              "min": 30000
+            }
+          }
+        ],
+        "area": {
+          "min": 18
+        },
+        "available": true,
+        "lowStock": false,
+        "highDemand": false
+      },
+      {
+        "id": 9244,
+        "label": "T1",
+        "residence": {
+          "label": "Residence 244",
+          "address": "244 rue de Test, 94400 Vitry-sur-Seine"
+        },
+        "occupationModes": [
+          {
+            "rent": {
+              "min": 30000
+            }
+          }
+        ],
+        "area": {
+          "min": 18
+        },
+        "available": true,
+        "lowStock": false,
+        "highDemand": false
+      },
+      {
+        "id": 9245,
+        "label": "T1",
+        "residence": {
+          "label": "Residence 245",
+          "address": "245 rue de Test, 94400 Vitry-sur-Seine"
+        },
+        "occupationModes": [
+          {
+            "rent": {
+              "min": 30000
+            }
+          }
+        ],
+        "area": {
+          "min": 18
+        },
+        "available": true,
+        "lowStock": false,
+        "highDemand": false
+      },
+      {
+        "id": 9246,
+        "label": "T1",
+        "residence": {
+          "label": "Residence 246",
+          "address": "246 rue de Test, 94400 Vitry-sur-Seine"
+        },
+        "occupationModes": [
+          {
+            "rent": {
+              "min": 30000
+            }
+          }
+        ],
+        "area": {
+          "min": 18
+        },
+        "available": true,
+        "lowStock": false,
+        "highDemand": false
+      },
+      {
+        "id": 9247,
+        "label": "T1",
+        "residence": {
+          "label": "Residence 247",
+          "address": "247 rue de Test, 94400 Vitry-sur-Seine"
+        },
+        "occupationModes": [
+          {
+            "rent": {
+              "min": 30000
+            }
+          }
+        ],
+        "area": {
+          "min": 18
+        },
+        "available": true,
+        "lowStock": false,
+        "highDemand": false
+      },
+      {
+        "id": 9248,
+        "label": "T1",
+        "residence": {
+          "label": "Residence 248",
+          "address": "248 rue de Test, 94400 Vitry-sur-Seine"
+        },
+        "occupationModes": [
+          {
+            "rent": {
+              "min": 30000
+            }
+          }
+        ],
+        "area": {
+          "min": 18
+        },
+        "available": true,
+        "lowStock": false,
+        "highDemand": false
+      },
+      {
+        "id": 9249,
+        "label": "T1",
+        "residence": {
+          "label": "Residence 249",
+          "address": "249 rue de Test, 94400 Vitry-sur-Seine"
+        },
+        "occupationModes": [
+          {
+            "rent": {
+              "min": 30000
+            }
+          }
+        ],
+        "area": {
+          "min": 18
+        },
+        "available": true,
+        "lowStock": false,
+        "highDemand": false
+      }
+    ]
+  }
+}

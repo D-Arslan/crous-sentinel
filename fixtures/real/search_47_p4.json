@@ -1,0 +1,609 @@
+{
+  "results": {
+    "total": {
+      "value": 1,
+      "relation": "eq"
+    },
+    "page": 0,
+    "pageSize": 6,
+    "items": [
+      {
+        "code": 87,
+        "reference": "2",
+        "bedroomCount": 1,
+        "id": 2608,
+        "residence": {
+          "publicTransports": [
+            {
+              "distance": 100,
+              "unitOfMeasure": "metre",
+              "description": "Bus : Ligne 3 (réseau T.U.M.)",
+              "id": "d7e075d1-fd36-11e7-89ed-005056940822",
+              "publicTransport": null
+            }
+          ],
+          "code": 31,
+          "uairne": "0401044T",
+          "address": "269 place de la caserne Bosquet 40000 MONT-DE-MARSAN",
+          "parkings": [
+            {
+              "parking": {
+                "name": "Stationnement urbain gratuit",
+                "id": "10402a4e-fa98-11e7-89ed-005056940822"
+              },
+              "description": null,
+              "id": "d7e090b2-fd36-11e7-89ed-005056940822"
+            }
+          ],
+          "description": "<p>En face de la M&eacute;diath&egrave;que de Mont de Marsan, la r&eacute;sidence universitaire Bosquet est situ&eacute;e &agrave; deux pas du centre ville, tr&egrave;s proche du lyc&eacute;e Victor Duruy.</p>\r\n\r\n<p>Logement b&eacute;n&eacute;ficiant de l&rsquo;APL (APL : aide personnalis&eacute;e au logement).</p>",
+          "location": {
+            "lon": -0.493,
+            "lat": 43.897
+          },
+          "sharedTransports": [],
+          "id": "f4e6f6c1-fc8e-11e7-89ed-005056940822",
+          "entity": {
+            "name": "Bordeaux",
+            "id": 4
+          },
+          "medias": [
+            {
+              "src": "f4e6f6c1-fc8e-11e7-89ed-005056940822/5a621e74f40dc-Bosquet_1.jpg"
+            }
+          ],
+          "label": "BOSQUET"
+        },
+        "bedCount": 1,
+        "adaptedPmr": false,
+        "roomCount": 1,
+        "area": {
+          "min": 18.0,
+          "max": 18.0
+        },
+        "label": "T1",
+        "indicators": [
+          {
+            "tool_id": 22,
+            "highDemand": false,
+            "lowStock": false
+          },
+          {
+            "tool_id": 47,
+            "highDemand": false,
+            "lowStock": false
+          }
+        ],
+        "equipments": [
+          {
+            "id": "d090e186-fa0e-11e7-89ed-005056940822",
+            "category": "Bâtiment",
+            "label": "WC"
+          },
+          {
+            "id": "d0910683-fa0e-11e7-89ed-005056940822",
+            "category": "Bâtiment",
+            "label": "Douche"
+          },
+          {
+            "id": "d0912861-fa0e-11e7-89ed-005056940822",
+            "category": "Bâtiment",
+            "label": "Evier + plaque"
+          },
+          {
+            "id": "d0914ae7-fa0e-11e7-89ed-005056940822",
+            "category": "Bâtiment",
+            "label": "Frigo"
+          }
+        ],
+        "bookingData": {
+          "amount": 7000
+        },
+        "highDemand": false,
+        "lowStock": false,
+        "occupationModes": [
+          {
+            "type": "alone",
+            "rent": {
+              "min": 39992,
+              "max": 39992
+            }
+          }
+        ],
+        "available": true,
+        "beds": [
+          {
+            "count": 1,
+            "type": "simple"
+          }
+        ],
+        "inUnavailabilityPeriod": false,
+        "unavailabilityMessage": null,
+        "specialConditions": null,
+        "description": null,
+        "studyLevel": {
+          "min": null,
+          "max": null
+        },
+        "medias": [
+          {
+            "src": "2608/648ae11f0fb0f-IMG_20230606_103921.jpg",
+            "description": null
+          },
+          {
+            "src": "2608/648af574f07cb-IMG_20230606_103232.jpg",
+            "description": null
+          },
+          {
+            "src": "2608/648ae1dc5c61c-IMG_20230606_103106.jpg",
+            "description": null
+          },
+          {
+            "src": "2608/648ae55228d90-IMG_20230606_102856.jpg",
+            "description": null
+          }
+        ]
+      }
+    ]
+  },
+  "aggregations": {
+    "occupationModes": {
+      "alone": 1,
+      "couple": 0,
+      "house_sharing": 0
+    },
+    "equipmentCategories": [
+      {
+        "label": "Bâtiment",
+        "equipments": [
+          {
+            "label": "Douche",
+            "count": 1
+          },
+          {
+            "label": "Evier + plaque",
+            "count": 1
+          },
+          {
+            "label": "Frigo",
+            "count": 1
+          },
+          {
+            "label": "WC",
+            "count": 1
+          }
+        ]
+      }
+    ],
+    "rent": [
+      {
+        "amount": 0.0,
+        "count": 0
+      },
+      {
+        "amount": 1000.0,
+        "count": 0
+      },
+      {
+        "amount": 2000.0,
+        "count": 0
+      },
+      {
+        "amount": 3000.0,
+        "count": 0
+      },
+      {
+        "amount": 4000.0,
+        "count": 0
+      },
+      {
+        "amount": 5000.0,
+        "count": 0
+      },
+      {
+        "amount": 6000.0,
+        "count": 0
+      },
+      {
+        "amount": 7000.0,
+        "count": 0
+      },
+      {
+        "amount": 8000.0,
+        "count": 0
+      },
+      {
+        "amount": 9000.0,
+        "count": 0
+      },
+      {
+        "amount": 10000.0,
+        "count": 0
+      },
+      {
+        "amount": 11000.0,
+        "count": 0
+      },
+      {
+        "amount": 12000.0,
+        "count": 0
+      },
+      {
+        "amount": 13000.0,
+        "count": 0
+      },
+      {
+        "amount": 14000.0,
+        "count": 0
+      },
+      {
+        "amount": 15000.0,
+        "count": 0
+      },
+      {
+        "amount": 16000.0,
+        "count": 0
+      },
+      {
+        "amount": 17000.0,
+        "count": 0
+      },
+      {
+        "amount": 18000.0,
+        "count": 0
+      },
+      {
+        "amount": 19000.0,
+        "count": 0
+      },
+      {
+        "amount": 20000.0,
+        "count": 0
+      },
+      {
+        "amount": 21000.0,
+        "count": 0
+      },
+      {
+        "amount": 22000.0,
+        "count": 0
+      },
+      {
+        "amount": 23000.0,
+        "count": 0
+      },
+      {
+        "amount": 24000.0,
+        "count": 0
+      },
+      {
+        "amount": 25000.0,
+        "count": 0
+      },
+      {
+        "amount": 26000.0,
+        "count": 0
+      },
+      {
+        "amount": 27000.0,
+        "count": 0
+      },
+      {
+        "amount": 28000.0,
+        "count": 0
+      },
+      {
+        "amount": 29000.0,
+        "count": 0
+      },
+      {
+        "amount": 30000.0,
+        "count": 0
+      },
+      {
+        "amount": 31000.0,
+        "count": 0
+      },
+      {
+        "amount": 32000.0,
+        "count": 0
+      },
+      {
+        "amount": 33000.0,
+        "count": 0
+      },
+      {
+        "amount": 34000.0,
+        "count": 0
+      },
+      {
+        "amount": 35000.0,
+        "count": 0
+      },
+      {
+        "amount": 36000.0,
+        "count": 0
+      },
+      {
+        "amount": 37000.0,
+        "count": 0
+      },
+      {
+        "amount": 38000.0,
+        "count": 0
+      },
+      {
+        "amount": 39000.0,
+        "count": 2
+      },
+      {
+        "amount": 40000.0,
+        "count": 0
+      },
+      {
+        "amount": 41000.0,
+        "count": 0
+      },
+      {
+        "amount": 42000.0,
+        "count": 0
+      },
+      {
+        "amount": 43000.0,
+        "count": 0
+      },
+      {
+        "amount": 44000.0,
+        "count": 0
+      },
+      {
+        "amount": 45000.0,
+        "count": 0
+      },
+      {
+        "amount": 46000.0,
+        "count": 0
+      },
+      {
+        "amount": 47000.0,
+        "count": 0
+      },
+      {
+        "amount": 48000.0,
+        "count": 0
+      },
+      {
+        "amount": 49000.0,
+        "count": 0
+      },
+      {
+        "amount": 50000.0,
+        "count": 0
+      },
+      {
+        "amount": 51000.0,
+        "count": 0
+      },
+      {
+        "amount": 52000.0,
+        "count": 0
+      },
+      {
+        "amount": 53000.0,
+        "count": 0
+      },
+      {
+        "amount": 54000.0,
+        "count": 0
+      },
+      {
+        "amount": 55000.0,
+        "count": 0
+      },
+      {
+        "amount": 56000.0,
+        "count": 0
+      },
+      {
+        "amount": 57000.0,
+        "count": 0
+      },
+      {
+        "amount": 58000.0,
+        "count": 0
+      },
+      {
+        "amount": 59000.0,
+        "count": 0
+      },
+      {
+        "amount": 60000.0,
+        "count": 0
+      },
+      {
+        "amount": 61000.0,
+        "count": 0
+      },
+      {
+        "amount": 62000.0,
+        "count": 0
+      },
+      {
+        "amount": 63000.0,
+        "count": 0
+      },
+      {
+        "amount": 64000.0,
+        "count": 0
+      },
+      {
+        "amount": 65000.0,
+        "count": 0
+      },
+      {
+        "amount": 66000.0,
+        "count": 0
+      },
+      {
+        "amount": 67000.0,
+        "count": 0
+      },
+      {
+        "amount": 68000.0,
+        "count": 0
+      },
+      {
+        "amount": 69000.0,
+        "count": 0
+      },
+      {
+        "amount": 70000.0,
+        "count": 0
+      },
+      {
+        "amount": 71000.0,
+        "count": 0
+      },
+      {
+        "amount": 72000.0,
+        "count": 0
+      },
+      {
+        "amount": 73000.0,
+        "count": 0
+      },
+      {
+        "amount": 74000.0,
+        "count": 0
+      },
+      {
+        "amount": 75000.0,
+        "count": 0
+      },
+      {
+        "amount": 76000.0,
+        "count": 0
+      },
+      {
+        "amount": 77000.0,
+        "count": 0
+      },
+      {
+        "amount": 78000.0,
+        "count": 0
+      },
+      {
+        "amount": 79000.0,
+        "count": 0
+      },
+      {
+        "amount": 80000.0,
+        "count": 0
+      },
+      {
+        "amount": 81000.0,
+        "count": 0
+      },
+      {
+        "amount": 82000.0,
+        "count": 0
+      },
+      {
+        "amount": 83000.0,
+        "count": 0
+      },
+      {
+        "amount": 84000.0,
+        "count": 0
+      },
+      {
+        "amount": 85000.0,
+        "count": 0
+      },
+      {
+        "amount": 86000.0,
+        "count": 0
+      },
+      {
+        "amount": 87000.0,
+        "count": 0
+      },
+      {
+        "amount": 88000.0,
+        "count": 0
+      },
+      {
+        "amount": 89000.0,
+        "count": 0
+      },
+      {
+        "amount": 90000.0,
+        "count": 0
+      },
+      {
+        "amount": 91000.0,
+        "count": 0
+      },
+      {
+        "amount": 92000.0,
+        "count": 0
+      },
+      {
+        "amount": 93000.0,
+        "count": 0
+      },
+      {
+        "amount": 94000.0,
+        "count": 0
+      },
+      {
+        "amount": 95000.0,
+        "count": 0
+      },
+      {
+        "amount": 96000.0,
+        "count": 0
+      },
+      {
+        "amount": 97000.0,
+        "count": 0
+      },
+      {
+        "amount": 98000.0,
+        "count": 0
+      },
+      {
+        "amount": 99000.0,
+        "count": 0
+      },
+      {
+        "amount": 100000.0,
+        "count": 0
+      }
+    ],
+    "markers": [
+      {
+        "count": 1,
+        "location": {
+          "lat": 43.89699996449053,
+          "lon": -0.4930000752210617
+        },
+        "bounds": {
+          "top_left": {
+            "lat": 43.89699996449053,
+            "lon": -0.4930000752210617
+          },
+          "bottom_right": {
+            "lat": 43.89699996449053,
+            "lon": -0.4930000752210617
+          }
+        },
+        "residences": [
+          {
+            "id": "f4e6f6c1-fc8e-11e7-89ed-005056940822",
+            "label": "BOSQUET"
+          }
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,132 @@
+{
+  "results": {
+    "items": [
+      {
+        "id": 2001,
+        "label": "T1",
+        "residence": {
+          "label": "Residence des Landes",
+          "address": "5 rue Alsace-Lorraine, 40000 Mont-de-Marsan"
+        },
+        "occupationModes": [
+          {
+            "rent": {
+              "min": 27350
+            }
+          }
+        ],
+        "area": {
+          "min": 20
+        },
+        "available": true,
+        "lowStock": false,
+        "highDemand": false
+      },
+      {
+        "id": 2002,
+        "label": "T1",
+        "residence": {
+          "label": "Residence Pasteur",
+          "address": "Quartier Porette, 20250 Corte"
+        },
+        "occupationModes": [
+          {
+            "rent": {
+              "min": 25800
+            }
+          }
+        ],
+        "area": {
+          "min": 22
+        },
+        "available": true,
+        "lowStock": false,
+        "highDemand": false
+      },
+      {
+        "id": 2003,
+        "label": "T1",
+        "residence": {
+          "label": "Residence Talleyrand",
+          "address": "8 av. Gambetta, 24000 Perigueux"
+        },
+        "occupationModes": [
+          {
+            "rent": {
+              "min": 26400
+            }
+          }
+        ],
+        "area": {
+          "min": 19
+        },
+        "available": true,
+        "lowStock": true,
+        "highDemand": false
+      },
+      {
+        "id": 2004,
+        "label": "T1",
+        "residence": {
+          "label": "Residence Le Clos",
+          "address": "17 rue de la Paix, 94800 Villejuif"
+        },
+        "occupationModes": [
+          {
+            "rent": {
+              "min": 33200
+            }
+          }
+        ],
+        "area": {
+          "min": 18
+        },
+        "available": true,
+        "lowStock": false,
+        "highDemand": false
+      },
+      {
+        "id": 1001,
+        "label": "T1",
+        "residence": {
+          "label": "Residence Camille Claudel",
+          "address": "3 rue Camille Claudel, 94400 Vitry-sur-Seine"
+        },
+        "occupationModes": [
+          {
+            "rent": {
+              "min": 32150
+            }
+          }
+        ],
+        "area": {
+          "min": 19
+        },
+        "available": true,
+        "lowStock": false,
+        "highDemand": false
+      },
+      {
+        "id": 2005,
+        "label": "T1",
+        "residence": {
+          "label": "Residence Inconnue",
+          "address": "lieu-dit Les Sables"
+        },
+        "occupationModes": [
+          {
+            "rent": {
+              "min": 30000
+            }
+          }
+        ],
+        "area": {
+          "min": 18
+        },
+        "available": true,
+        "lowStock": false,
+        "highDemand": false
+      }
+    ]
+  }
+}

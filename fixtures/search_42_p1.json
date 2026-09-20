@@ -1,0 +1,111 @@
+{
+  "results": {
+    "items": [
+      {
+        "id": 1001,
+        "label": "T1",
+        "residence": {
+          "label": "Residence Camille Claudel",
+          "address": "3 rue Camille Claudel, 94400 Vitry-sur-Seine"
+        },
+        "occupationModes": [
+          {
+            "rent": {
+              "min": 32150
+            }
+          }
+        ],
+        "area": {
+          "min": 19
+        },
+        "available": true,
+        "lowStock": true,
+        "highDemand": false
+      },
+      {
+        "id": 1002,
+        "label": "T1",
+        "residence": {
+          "label": "Residence Gabriel Peri",
+          "address": "12 av. Gabriel Peri, 94200 Ivry-sur-Seine"
+        },
+        "occupationModes": [
+          {
+            "rent": {
+              "min": 29900
+            }
+          }
+        ],
+        "area": {
+          "min": 17
+        },
+        "available": true,
+        "lowStock": false,
+        "highDemand": false
+      },
+      {
+        "id": 1003,
+        "label": "T1",
+        "residence": {
+          "label": "Residence Universitaire de Creteil",
+          "address": "5 rue du Lac, 94000 Creteil"
+        },
+        "occupationModes": [
+          {
+            "rent": {
+              "min": 34500
+            }
+          }
+        ],
+        "area": {
+          "min": 21
+        },
+        "available": true,
+        "lowStock": false,
+        "highDemand": true
+      },
+      {
+        "id": 1004,
+        "label": "T1",
+        "residence": {
+          "label": "Residence Jean Zay",
+          "address": "2 rue Jean Zay, 92230 Gennevilliers"
+        },
+        "occupationModes": [
+          {
+            "rent": {
+              "min": 31000
+            }
+          }
+        ],
+        "area": {
+          "min": 18
+        },
+        "available": true,
+        "lowStock": false,
+        "highDemand": false
+      },
+      {
+        "id": 1005,
+        "label": "T1",
+        "residence": {
+          "label": "Residence Bastille",
+          "address": "8 bd Richard Lenoir, 75011 Paris"
+        },
+        "occupationModes": [
+          {
+            "rent": {
+              "min": 45000
+            }
+          }
+        ],
+        "area": {
+          "min": 18
+        },
+        "available": true,
+        "lowStock": false,
+        "highDemand": false
+      }
+    ]
+  }
+}

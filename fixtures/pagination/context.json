@@ -1,0 +1,9 @@
+{
+  "tools": {
+    "currentSchoolYear": {
+      "id": 99,
+      "mechanism": "flow",
+      "isEnabled": true
+    }
+  }
+}

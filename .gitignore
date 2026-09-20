@@ -6,3 +6,11 @@ seen.json
 seen.db
 bot.log
 bot.log.old
+seen.json.tmp
+*.har
+.backup/
+.claude/
+CLAUDE.md
+*.local
+.pytest_cache/
+.ruff_cache/

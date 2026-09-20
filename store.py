@@ -73,7 +73,9 @@ def split_new(annonces: list[dict], seen: dict) -> tuple[list[dict], dict]:
     Ne modifie pas 'seen' en place : renvoie une copie.
     """
     now = time.strftime("%Y-%m-%d %H:%M:%S")
-    updated = dict(seen)
+    # Copie ENTREE par ENTREE : dict(seen) ne copiait que le niveau superieur,
+    # et la mise a jour de 'last_seen' modifiait la memoire d'origine.
+    updated = {k: dict(v) for k, v in seen.items()}
     nouvelles = []
     for a in annonces:
         key = str(a.get("id"))
