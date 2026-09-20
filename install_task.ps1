@@ -1,16 +1,19 @@
 # Installe CROUS Sentinel comme tache planifiee Windows :
 #   - demarre a l'ouverture de session,
-#   - se re-verifie toutes les 10 min et redemarre SEULEMENT si plus aucune
-#     instance ne tourne (auto-reparation SANS doublon, grace a IgnoreNew),
+#   - se re-verifie toutes les 10 min et relance bot.py ; si une instance
+#     tourne deja, le doublon s'arrete de lui-meme grace au verrou (mutex
+#     Windows) de bot.py. IgnoreNew n'empeche que le chevauchement de la
+#     tache elle-meme, pas celui d'un bot lance a la main,
 #   - tourne sans fenetre (via pythonw.exe), logs dans bot.log.
 #
 # Lancer une seule fois :
-#   powershell -ExecutionPolicy Bypass -File "D:\CrousBot\install_task.ps1"
+#   powershell -ExecutionPolicy Bypass -File .\install_task.ps1
+# (depuis le dossier du projet ; le script se localise via $PSScriptRoot)
 
 $ErrorActionPreference = "Stop"
 
 $TaskName = "CrousSentinel"
-$Dir      = "D:\CrousBot"
+$Dir      = $PSScriptRoot
 $PythonW  = "$Dir\.venv\Scripts\pythonw.exe"
 $Script   = "$Dir\bot.py"
 
@@ -38,7 +41,8 @@ $trigEvery = New-ScheduledTaskTrigger -Once -At ((Get-Date).AddMinutes(10)) `
     -RepetitionInterval (New-TimeSpan -Minutes 10) `
     -RepetitionDuration (New-TimeSpan -Days 3650)
 
-# Reglages : UNE seule instance a la fois (IgnoreNew = pas de doublon),
+# Reglages : IgnoreNew evite que la tache se chevauche elle-meme (le vrai
+# anti-doublon est le mutex de bot.py),
 # pas de limite de duree. Pas de RestartCount (le bot gere deja ses erreurs
 # en interne et ne plante pas ; RestartCount provoquait des doublons).
 $settings = New-ScheduledTaskSettingsSet `
@@ -63,7 +67,7 @@ Register-ScheduledTask -TaskName $TaskName -Action $action `
 
 Write-Host "Tache '$TaskName' installee." -ForegroundColor Green
 
-# Demarre tout de suite (une seule instance grace a IgnoreNew)
+# Demarre tout de suite (un eventuel doublon est stoppe par le mutex de bot.py)
 Start-ScheduledTask -TaskName $TaskName
 Write-Host "Bot demarre. Tu devrais recevoir le message Telegram 'demarre'." -ForegroundColor Green
-Write-Host "Logs en direct : Get-Content D:\CrousBot\bot.log -Wait -Tail 20"
+Write-Host "Logs en direct : Get-Content $Dir\bot.log -Wait -Tail 20"

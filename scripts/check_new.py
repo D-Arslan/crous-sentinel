@@ -1,14 +1,19 @@
 """
-Etape 3 : recherche + memoire. Affiche uniquement les NOUVELLES annonces du 94
+Outil manuel : recherche + memoire. Affiche uniquement les NOUVELLES annonces du 94
 (celles jamais vues), et met a jour la memoire locale seen.json.
-Toujours pas de Telegram ici : on valide d'abord la logique "nouveautes".
+Pas de Telegram ici. NE PAS lancer pendant que bot.py tourne : ils partagent seen.json.
 
 Lancement :
-    D:\\CrousBot\\.venv\\Scripts\\python.exe D:\\CrousBot\\check_new.py
+    .venv/Scripts/python.exe scripts/check_new.py
 """
-from crous import fetch_annonces_94, log
-from store import load_seen, save_seen, split_new
-from check_crous import format_annonce
+import sys
+from pathlib import Path
+
+sys.path.insert(0, str(Path(__file__).resolve().parent.parent))  # crous.py, store.py sont a la racine
+
+from crous import fetch_annonces_94, log  # noqa: E402
+from store import load_seen, save_seen, split_new  # noqa: E402
+from check_crous import format_annonce  # noqa: E402
 
 
 def main() -> None:

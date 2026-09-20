@@ -1,13 +1,12 @@
 """
-Etape 1 : test de la partie Telegram.
-
-Objectif : envoyer un message "bot en ligne" sur ton Telegram pour valider
-que le token et le chat_id sont corrects.
+Verification manuelle du transport Telegram : ENVOIE UN VRAI MESSAGE sur ton
+Telegram pour valider que le token et le chat_id du .env sont corrects.
+Ce n'est pas un test unitaire (il touche le reseau), d'ou son emplacement dans scripts/.
 
 Utilise UNIQUEMENT la bibliotheque standard Python (urllib) : rien a installer.
 
 Lancement :
-    D:\\CrousBot\\.venv\\Scripts\\python.exe D:\\CrousBot\\test_telegram.py
+    .venv/Scripts/python.exe scripts/telegram_smoke.py
 """
 
 import json
@@ -16,7 +15,7 @@ import urllib.parse
 import urllib.request
 from pathlib import Path
 
-ENV_PATH = Path(__file__).with_name(".env")
+ENV_PATH = Path(__file__).resolve().parent.parent / ".env"
 
 
 def load_env(path: Path) -> dict:

@@ -1,11 +1,16 @@
 """
-Etape 2 : afficher dans la console les logements CROUS du Val-de-Marne (94).
-Pas encore de notifications, pas encore de memoire : juste un etat des lieux.
+Outil manuel : affiche dans la console les logements CROUS du Val-de-Marne (94).
+Aucune notification, aucune ecriture en memoire : juste un etat des lieux.
 
 Lancement :
-    D:\\CrousBot\\.venv\\Scripts\\python.exe D:\\CrousBot\\check_crous.py
+    .venv/Scripts/python.exe scripts/check_crous.py
 """
-from crous import fetch_annonces_94, log
+import sys
+from pathlib import Path
+
+sys.path.insert(0, str(Path(__file__).resolve().parent.parent))  # crous.py, store.py sont a la racine
+
+from crous import fetch_annonces_94, log  # noqa: E402
 
 
 def format_annonce(a: dict) -> str:

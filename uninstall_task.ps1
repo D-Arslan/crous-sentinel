@@ -1,5 +1,5 @@
 # Arrete et supprime la tache planifiee de CROUS Sentinel.
-#   powershell -ExecutionPolicy Bypass -File "D:\CrousBot\uninstall_task.ps1"
+#   powershell -ExecutionPolicy Bypass -File .\uninstall_task.ps1
 
 $TaskName = "CrousSentinel"
 

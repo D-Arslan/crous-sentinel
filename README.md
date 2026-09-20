@@ -1,170 +1,183 @@
-<h1 align="center">🛰️ CROUS Sentinel</h1>
+# CROUS Sentinel
 
-<p align="center">
-  <b>Real-time Telegram alerts for CROUS student housing in Val-de-Marne (France).</b><br>
-  Listings vanish in minutes — this bot stands guard and pings you the moment one appears.
-</p>
+Telegram bot that watches the French student-housing site (CROUS) for the Val-de-Marne
+département and alerts on every new listing: a real browser to get past the waiting room,
+the site's internal JSON API from inside that browser, an atomic memory of what was seen,
+and one measured result: **66 days in production, zero listing to report, and a 17-day
+outage that the bot announced once and nobody heard.**
 
-<p align="center">
-  <img src="https://img.shields.io/badge/Python-3.12-3776AB?logo=python&logoColor=white" alt="Python 3.12">
-  <img src="https://img.shields.io/badge/Playwright-Chromium-2EAD33?logo=playwright&logoColor=white" alt="Playwright">
-  <img src="https://img.shields.io/badge/Telegram-Bot%20API-26A5E4?logo=telegram&logoColor=white" alt="Telegram Bot API">
-  <img src="https://img.shields.io/badge/Platform-Windows-0078D6?logo=windows&logoColor=white" alt="Windows">
-  <img src="https://img.shields.io/badge/License-MIT-yellow" alt="MIT License">
-  <img src="https://img.shields.io/badge/status-production-success" alt="Status">
-</p>
+[![CI](https://github.com/D-Arslan/crous-sentinel/actions/workflows/ci.yml/badge.svg)](https://github.com/D-Arslan/crous-sentinel/actions/workflows/ci.yml)
 
----
+The bot is the pretext; the subject is what it takes for a small unattended process to be
+trusted with something that matters, and what happens when the silence of a healthy system
+and the silence of a broken one look the same. The full account is in
+[docs/POSTMORTEM.md](docs/POSTMORTEM.md).
 
-## 📸 Preview
+## Problem → Result
 
-<p align="center">
-  <img src="docs/telegram-preview.png" alt="Telegram notifications from CROUS Sentinel" width="360">
-</p>
+CROUS listings disappear within minutes, and the site defends itself with a waiting room
+and an anti-bot layer that serves a "too many visitors" page to plain HTTP clients. The bot
+drives Chromium through the queue, then calls the site's search API from the page itself, and
+sends a Telegram message for each listing not seen before.
 
-<p align="center"><i>Real notifications: residence name, town, price and a direct link to the listing.</i></p>
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="docs/telegram-preview-dark.png">
+  <img src="docs/telegram-preview.png" alt="Mock-up of a CROUS Sentinel notification" width="360">
+</picture>
 
----
+*Mock-up of the notification format, rendered from
+[docs/telegram-preview.html](docs/telegram-preview.html) with invented listings. No real
+notification was ever sent, see below.*
 
-## Why
+**The run.** Figures counted in `bot.log` (not versioned) on 2026-09-20. One process ran from
+2026-07-09 10:55 to 2026-09-13 13:24: 66 days, about 21 of them awake (the laptop slept the
+rest), 7 exceptions absorbed without a crash, 970 duplicate launches stopped by the
+single-instance lock. **Zero listing was ever notified**: every successful cycle reported 0
+listings inside the Val-de-Marne box, the memory file stayed empty, and a replay on real data
+captured on 2026-09-18 found the same.
 
-CROUS student housing is in **very high demand** and listings **disappear within
-minutes**. The official website (`trouverunlogement.lescrous.fr`) also guards itself
-with:
-
-- a **waiting room** ("Vous êtes trop nombreux !") under heavy traffic, and
-- **anti-bot protection** — a plain HTTP request just gets the waiting-room page.
-
-Refreshing the site by hand, day and night, isn't realistic. **CROUS Sentinel does
-it for you.**
-
----
-
-## ✨ Features
-
-- 🛰️ **Monitors the whole Val-de-Marne (94)** — every town (Ivry, Créteil, Villejuif,
-  Vitry, Saint-Maur…), filtered precisely by postal code.
-- 🧭 **Beats the waiting room** by driving a real Chromium browser (Playwright), then
-  calling the site's **internal JSON API** for clean, structured data.
-- 🔔 **Telegram notifications** with residence name, town, price and a **direct link**.
-- 🧠 **Notifies new listings only** — persistent memory with atomic, corruption-proof
-  writes.
-- 🛡️ **Never crashes, never misses, no duplicates** — see the reliability section.
-- ⚙️ **Always-on** — one command installs a Windows scheduled task (auto-start,
-  auto-restart, windowless).
-
----
-
-## 🏗️ Architecture
-
-```
-┌──────────────┐   every ~3 min         ┌────────────────────────┐
-│    bot.py    │ ─────────────────────► │  Playwright (Chromium) │
-│ (main loop)  │                        │  clears the waiting room│
-└──────┬───────┘                        └───────────┬────────────┘
-       │                                            │ internal JSON API
-       │                                            ▼
-       │                               POST /api/fr/search/{idTool}
-       │        ┌───────────────┐                   ▼
-       │        │  store.py     │◄──── filter 94xxx + parse
-       │        │  seen.json    │      (name, price, town, link)
-       │        └───────┬───────┘
-       │  new only      ▼
-       ▼           ┌────────────────┐
-┌──────────────┐   │  📱 Telegram   │
-│ telegram.py  │──►└────────────────┘
-└──────────────┘
-```
-
-**Key idea:** don't scrape HTML (fragile). Drive a real browser to clear the waiting
-room, then call the website's **undocumented internal API** from inside that browser
-session — robustness of a browser, cleanliness of a JSON API.
-
----
-
-## 🚀 Quick start
-
-```powershell
-# 1. Virtual environment
-python -m venv .venv
-
-# 2. Install Playwright + Chromium
-.\.venv\Scripts\python.exe -m pip install playwright
-.\.venv\Scripts\python.exe -m playwright install chromium
-
-# 3. Secrets — copy the template and fill it in
-copy .env.example .env
-#   TELEGRAM_TOKEN=...    (from @BotFather)
-#   TELEGRAM_CHAT_ID=...  (your chat id, e.g. via @userinfobot)
-
-# 4. Run
-.\.venv\Scripts\python.exe bot.py
-```
-
-Enable **always-on** (auto-start on logon, auto-restart, windowless):
-
-```powershell
-powershell -ExecutionPolicy Bypass -File .\install_task.ps1
-```
-
-<details>
-<summary>Managing the scheduled task</summary>
-
-```powershell
-Get-Content .\bot.log -Wait -Tail 20            # live logs
-Get-ScheduledTask -TaskName CrousSentinel       # status
-Disable-ScheduledTask -TaskName CrousSentinel   # pause
-Enable-ScheduledTask  -TaskName CrousSentinel   # resume
-powershell -ExecutionPolicy Bypass -File .\uninstall_task.ps1   # remove
-```
-</details>
-
----
-
-## 🛡️ Reliability by design
-
-| Guarantee | How |
+| measure | value |
 |---|---|
-| **Never crashes** | Every cycle wrapped in `try/except`; errors are logged, the loop continues |
-| **Never misses a listing** | A listing is marked "seen" only **after** a successful notification (retried otherwise) |
-| **No duplicates** | Persistent memory keyed by listing id, **atomic** file writes |
-| **Survives the waiting room** | Real browser + detect / wait / retry |
-| **Failure ≠ empty result** | The search returns an explicit `ok` status — no misleading silence |
-| **Warns if blind** | Telegram alert after 5 consecutive failed checks |
+| period covered by the log | 2026-07-08 → 2026-09-16 |
+| successful cycles | 7 467 |
+| failed cycles (queue, network, outage) | 1 735 |
+| last successful cycle | 2026-08-26 14:30 |
+| exceptions absorbed, crashes | 7, 0 |
+| duplicate launches stopped by the lock | 970 |
+| listings notified | 0 |
 
-✅ Validated with **deterministic tests** (multiple cycles, a Telegram outage, a
-corrupt memory file): **12/12 checks passed**.
+Source: `bot.log` and `bot.log.old`, 6 MB, kept locally; each row is a line count on those files.
 
----
+**The incident.** From 2026-08-27 the site stopped serving the bot (queue page never cleared,
+then connection timeouts). The bot sent one health alert that evening, then failed 505 cycles
+in a row; the alert was never repeated and nobody acted on it until a manual check on
+2026-09-13. A test restart on 2026-09-16 met HTTP 429 on every request, home page included.
+**The bot has been stopped since then**, scheduled task disabled, by decision: the site
+refuses automated clients and the author chose not to evade that.
 
-## 🧰 Tech stack
+## Architecture
 
-**Python 3.12** · **Playwright** (Chromium) · **Telegram Bot API** (via stdlib
-`urllib`) · **JSON** persistence · **Windows Task Scheduler**. Only one external
-dependency: `playwright`.
+```mermaid
+flowchart LR
+    subgraph LOOP["bot.py - one cycle every 14-16 min"]
+        T["Windows Task Scheduler<br/>retry every 10 min"] --> M{"single-instance<br/>mutex"}
+        M -- "already running" --> X["exit"]
+        M --> B["Playwright Chromium<br/>load_through_queue"]
+    end
+    B -- "fetch() from the page" --> CTX["/api/global/context<br/>active campaigns (idTool)"]
+    CTX --> S["POST /api/fr/search/{idTool}<br/>bounding box 94, pages of 100"]
+    S --> C["collect<br/>parse · filter 94xxx · dedup + merge flags"]
+    C --> ST[("seen.json<br/>atomic write")]
+    ST -- "new only" --> TG["telegram.py<br/>urllib, 3 retries"]
+    TG -- "confirmed" --> ST
+    S -. "HTTP 429" .-> BO["exponential backoff<br/>30 min to 6 h, stop after 24 h"]
+    BO -. "every 6 h" .-> TG
+    B -. "N consecutive failures" .-> H["health alert<br/>repeated every 6 h"]
+    H -.-> TG
+    F["fixtures/ JSON"] -. "replay_annonces<br/>tests, diagnostic" .-> C
+```
 
----
+Static copy: [docs/architecture.svg](docs/architecture.svg). Current code; the operation
+figures above were measured at 150–180 s per cycle, before the rework of 2026-09-16. The
+point of the shape: every network call leaves **from the page** (the browser is the only
+client the site lets through), a listing is written to memory **only after Telegram confirmed**
+the send, and the same `collect` function is fed either by the live API or by JSON fixtures,
+so the whole chain is testable with the site unreachable.
 
-## 🗺️ Roadmap
+## Stack
 
-- ☁️ Cloud deployment (VPS / Raspberry Pi) for 24/7 monitoring
-- 🐳 Docker packaging
-- 🎛️ Advanced filters (price, type, area)
-- 🤖 Interactive Telegram commands (`/status`, `/pause`)
-- 📊 Listing-frequency analytics
+| layer | tools |
+|---|---|
+| runtime | Python 3.12, one dependency: Playwright 1.61 (Chromium) |
+| site access | headless Chromium, `fetch()` evaluated in the page, JSON search API, bounding box + postal-code filter |
+| memory | `seen.json`, written through a temporary file and `os.replace` |
+| notifications | Telegram Bot API over `urllib` (standard library), 3 attempts |
+| operations | Windows Task Scheduler (logon + every 10 min), Windows mutex, log file with rotation |
+| quality | `unittest` (44 offline tests, replay on captured data), GitHub Actions on Ubuntu and Windows |
 
----
+## Getting started in 3 commands
 
-## 📚 Full documentation
+```bash
+git clone https://github.com/D-Arslan/crous-sentinel.git && cd crous-sentinel && python -m venv .venv
+.venv/Scripts/python -m pip install -r requirements.txt && .venv/Scripts/python -m unittest discover -s tests -t .
+.venv/Scripts/python scripts/diagnostic.py --rejeu fixtures/real   # full chain on real data, no network
+```
 
-- 🇬🇧 [`documentation_en.md`](documentation_en.md) — complete English documentation
-- 🇫🇷 [`documentation.md`](documentation.md) — documentation complète (français)
+What you get, honestly: the tests and the replay work anywhere and need no browser. The
+replay prints the listings found in the capture of 2026-09-18 (24 across France, 0 in
+Val-de-Marne) and the 3 control towns checked against screenshots of the site.
 
----
+**Running the bot itself is currently not possible from an automated client**: the site
+answers HTTP 429 to headless Chromium within seconds, and the author decided not to disguise
+the browser. If that changes, the sequence is:
 
-## 📝 License
+```powershell
+.venv\Scripts\python -m playwright install chromium
+copy .env.example .env             # TELEGRAM_TOKEN from @BotFather, TELEGRAM_CHAT_ID
+.venv\Scripts\python scripts\telegram_smoke.py   # sends one real test message
+.venv\Scripts\python bot.py        # foreground; or install_task.ps1 for the scheduled task
+```
 
-Released under the **MIT License** — see [`LICENSE`](LICENSE).
+`install_task.ps1` registers a task that starts at logon and retries every 10 minutes; the
+mutex in `bot.py` makes the retry harmless. `uninstall_task.ps1` removes it.
 
-<sub>Personal project. Not affiliated with CROUS or CNOUS. Use responsibly and
-respect the website's terms of service.</sub>
+## Repository layout
+
+```
+crous-sentinel/
+├── bot.py                   # main loop: cadence, backoff, health alerts, automatic stop, lock
+├── crous.py                 # queue, browser-side fetch, context, paginated search, parse, filter, replay
+├── store.py                 # seen.json: tolerant load, atomic save
+├── telegram.py              # send_message (returns True only on confirmed delivery), formatting
+├── tests/                   # 44 unittest cases, no network: chain replay, store, one mocked cycle
+├── fixtures/                # synthetic (root, pagination/) and real/ (campaign 47, HAR of 2026-09-18)
+├── scripts/                 # diagnostic --rejeu, fixture capture / HAR extraction, check_*, telegram_smoke
+├── install_task.ps1 / uninstall_task.ps1   # Windows scheduled task
+├── docs/                    # DESIGN.md, POSTMORTEM.md, architecture.svg, notification mock-up
+└── .github/workflows/ci.yml # unittest on ubuntu-latest and windows-latest
+```
+
+## Design decisions and trade-offs
+
+- **A real browser, then the API from inside it.** Plain HTTP gets the waiting room; HTML
+  scraping breaks on every redesign. `page.evaluate(fetch)` gets structured JSON with the
+  browser's own session. The first version used Playwright's Node-side client instead, and
+  that was a bug, not a nuance.
+- **Failure is never "0 listings".** The search returns `ok`, `rate_limited` or `fail`; only
+  `ok` may update memory or conclude anything.
+- **Seen only after sent.** A listing enters `seen.json` when Telegram has confirmed the
+  message, so a Telegram outage delays a notification instead of losing it.
+- **Alerts repeat, and count only when delivered.** After 5 failed cycles, one message, then
+  one every 6 hours for as long as it lasts. The one-shot alert is the root cause in the
+  post-mortem.
+- **429 is an instruction.** Exponential backoff from 30 minutes to a 6-hour cap, and the bot
+  stops itself after 24 hours of continuous limiting: a watcher that cannot see should not keep
+  knocking on a door that also serves its owner.
+- **One `collect` for live and replay.** The parse-filter-dedup path is a pure function fed
+  by either the API or fixtures, so the tests exercise the real code path, not a copy.
+- **No stealth.** No User-Agent spoofing, no `navigator.webdriver` patch, no proxies. The
+  bot is blocked as a bot, and stays blocked.
+
+Details, and the reasoning behind each: [docs/DESIGN.md](docs/DESIGN.md).
+
+## Limits and next steps
+
+- **Stopped.** The site refuses headless Chromium; the bot has not run since 2026-09-16 and
+  will not until that changes on the site's side. Everything else here is verifiable offline.
+- **Never proved on a real listing.** The notification path was exercised by tests and by the
+  startup message, never by an actual Val-de-Marne listing, because there was none.
+- **Windows-only operations.** Mutex, `pythonw.exe`, Task Scheduler; the code itself runs
+  elsewhere (CI on Ubuntu). Runs only while the user session is open.
+- **Pagination guard, not proof**: at most 20 pages of 100 per campaign; beyond that the log
+  says so and the results are truncated. Never reached (the box never held more than 0).
+- **Log rotation happens at startup only**, so a long run can exceed the 5 MB target
+  (the incident's log reached 6 MB). Next step: rotate per cycle.
+- **Retry sleeps after the last Telegram attempt** and the delay is linear (3, 6, 9 s).
+
+## Author
+
+Arslan Dif, M2 distributed systems and data science. Personal project, not affiliated with
+CROUS or CNOUS. Related work: [UrbanFlow](https://github.com/D-Arslan/UrbanFlow) (real-time
+Vélib' pipeline, Kafka / Spark / XGBoost), [TerraOps](https://github.com/D-Arslan/terraops)
+(MLOps platform with a measured drift monitor), [TerraOps Copilot](https://github.com/D-Arslan/terraops-copilot)
+(LLM agent with tools, evaluated against ground truth). License: [MIT](LICENSE).
